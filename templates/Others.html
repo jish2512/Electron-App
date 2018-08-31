@@ -1,0 +1,42 @@
+﻿<div>
+    <h4>Couch Base Settings</h4>
+    <table class="table">
+       
+            <tr>
+                <td style="width:5%">#</td>
+                <td>Couch Base Login Url</td>
+                <td>Couch Access Token</td>
+                <td></td>
+            </tr>
+        
+        <tr>
+            <td>1</td>
+            <td>{{BaseConfiguration.CouchBaseSettings.CouchBaseLoginUrl}}</td>
+            <td>{{BaseConfiguration.CouchBaseSettings.CouchAccessToken}}</td>
+            <td  align="right">
+                <span class="edit-span" title="Edit" ng-click="editCouchBaseSettings(BaseConfiguration.CouchBaseSettings)">&#xE104;</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h4>Adal Auth Exclude Extn</h4>
+    <table class="table">
+        
+        <tr>
+            <td style="width:5%">#</td>
+            <td style="width:85%">Adal Auth Exclude Extn</td>
+            <td></td>
+        </tr>
+       
+        <tr>
+            <td>1</td>
+            <td>{{BaseConfiguration.FxpConfigurationStrings.AdalAuthExcludeExtn}}</td>
+
+            <td align="right">
+                <span class="edit-span" title="Edit" ng-click="editAdalAuthExcludeExtn(BaseConfiguration.FxpConfigurationStrings.AdalAuthExcludeExtn)">&#xE104;</span>
+                
+            </td>
+        </tr>
+    </table>
+</div>

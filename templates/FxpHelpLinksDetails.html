@@ -1,0 +1,91 @@
+﻿
+<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchHelpLink" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br /><br />
+    <table class="table table-striped td-Break" id="tblServiceApplication">
+        <colgroup>
+            <col style="width:5%">
+            <col style="width:5%">
+            <col class="col-md-5">
+            <col class="col-md-3">
+            <col class="col-md-pull-2">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <td>#</td>
+                <td></td>
+                <td>Display Text</td>
+                <td>Display Order</td>
+                <td align="right">
+                    <div class="round-edit" ng-click="editFxpHelplinks(null,'Add',-1)" style="" title="Add New Help link">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody ng-repeat="link in FxpHelpLinks|filter:{DisplayText :searchHelpLink}">
+            <tr ng-class="{'active': isDisplay}">
+                <td ng-bind="$index+1"></td>
+                <td ng-click="isDisplay=!isDisplay">
+                    <i class="glyphicon glyphicon-chevron-down" ng-show="!isDisplay"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="isDisplay"></i>
+                </td>
+                <td ng-click="isDisplay=!isDisplay">
+                    {{link.DisplayText}}
+                </td>
+                <td ng-click="isDisplay=!isDisplay">
+                    {{link.DisplayOrder}}
+                </td>
+                <td align="right" ng-click="isDisplay=!isDisplay">
+                    <span class="edit-span" title="Edit" ng-click="editFxpHelplinks(link,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deleteFxpHelpLink($index)">&#xE107;</span>
+                </td>
+            </tr>
+            <tr ng-if="isDisplay">
+                <td colspan="5" style="padding-left:55px">
+                    <table class="table table-striped td-Break" id="tblServiceApplication">
+                        <colgroup>
+                            <col style="width:5%">
+                            <col class="col-md-2">
+                            <col class="col-md-4">
+                            <col class="col-md-3">
+                            <col class="col-md-1">
+                            <col class="col-md-pull-2">
+                        </colgroup>
+                        <tr style="background:rgb(234, 214, 177);">
+                            <td>#</td>
+                            <td>Display Text </td>
+                            <td>Href</td>
+                            <td>Title</td>
+                            <td>Display Order</td>
+                            <td>Open Inline</td> 
+                            <td align="right">
+                                <div class="round-edit" ng-click="editFxpsubHelplinks(link,null,'Add',-1)" style="" title="Add New Help link">+</div>
+                            </td>
+                        </tr>
+                        <tbody>
+                            <tr ng-repeat="sublink in link.HelpLinks|filter:{DisplayText :searchHelpLink}">
+                                <td>{{$index+1}}</td>
+                                <td>{{sublink.DisplayText}} </td>
+                                <td>{{sublink.Href}}</td>
+                                <td>{{sublink.Title}}</td>
+                                <td>{{sublink.DisplayOrder}}</td>
+                                <td>{{sublink.OpenInline}}</td>
+                                <td align="right">
+                                    <span class="edit-span" title="Edit" ng-click="editFxpsubHelplinks(link,sublink,'Edit',$index)">&#xE104;</span>
+                                    <span class="edit-span" title="Delete" ng-click="deleteFxpSubHelplinks($parent.$index,$index)">&#xE107;</span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

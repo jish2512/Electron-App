@@ -1,0 +1,35 @@
+﻿
+ <div ng-cloak>
+     
+     <div ng-include="'templates/Modalpopups.html'"></div>
+    <md-content>
+         <md-tabs md-dynamic-height md-border-bottom> 
+            <md-tab label="Routes">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/RouteDetails.html'"></div>
+                </md-content>
+            </md-tab>  
+            <md-tab label="Persona-Route"  >
+                <md-content class="md-padding">
+                    <div ng-include="'templates/PersonaRouteMapping.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Partner Module">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/StartupConfigPartnerModules.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Scripts">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/StartupConfigScripts.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Styles">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/StartupConfigStylesDetails.html'"></div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+ 

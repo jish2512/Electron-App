@@ -1,0 +1,1011 @@
+﻿<div class="modal fade" id="AddRouteModel" data-backdrop="static">
+    <div class="modal-dialog" style="width:780px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">{{ModelTitle}}</h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="addRouteform" autocomplete="off">
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Route Name<span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="EditRouteModel.RouteName" class="form-control" id="envRouteName" name="envRouteName" placeholder="Unique Route Name" required title="Enter Unique Route Name" ng-blur="RouteNameAvilabiltyCheck()" />
+                            <span ng-if="isDupicateRouteName" class="has-error">Route Name already exists !</span>
+                            <span ng-if="submitted&&addRouteform.envRouteName.$error.required" class="has-error">Route Name is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="title" class="col-sm-2 control-label">State Name<span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="EditRouteModel.StateName" class="form-control" id="envStateName" name="envStateName" placeholder="State Name" required title="Enter State Name" />
+                            <span ng-if="submitted&&addRouteform.envStateName.$error.required" class="has-error">State Name is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Style </label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="EditRouteModel.Style" class="form-control" id="envAppHeader" placeholder="Style" title="Enter Style" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">App Header</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="EditRouteModel.AppHeader" class="form-control" id="envAppHeader" placeholder="App Header" title="Enter State Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12 layout-align-center">
+                            <div class="table-responsive">
+                                <table class="table table-striped td-Break">
+                                    <thead>
+                                        <tr>
+                                            <td style="width:5%">#</td>
+                                            <td style="width:20%">Key</td>
+                                            <td style="width:25%">Value</td>
+                                            <td style="width:10%;" align="right">
+                                                <div class="round-edit" ng-click="CreateRouteConfigKey()" style="" title="Add New Route Config">+</div>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="(key, value) in EditRouteModel.RouteConfig">
+                                        <td ng-bind="$index+1"></td>
+                                        <td>{{key}}</td>
+                                        <td>
+                                            {{EditRouteModel.RouteConfig[key]}}
+                                        </td>
+                                        <td align="right">
+                                            <span class="edit-span" title="Edit" ng-click="editRouteConfigKey(key,EditRouteModel.RouteConfig[key],'Update',$index)">&#xE104;</span>
+                                            <span class="edit-span" title="Delete" ng-click="deleteRouteKey(key)">&#xE107;</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{EditRouteModel.ButtonText}}" ng-click="updateRoute(EditRouteModel,EditRouteModel.Action,addRouteform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelCancel('AddRouteModel')" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="AddRouteConfigModel" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Update Route Config Key</h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editRoutekeyform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Key <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="routeConfigKeyEdiables.key" class="form-control" id="routeKeyEdiableskey" name="routeKeyEdiableskey" placeholder="Enter Key" required title="Enter Key" />
+                            <span ng-if="submitted&&editRoutekeyform.routeKeyEdiableskey.$error.required" class="has-error"> Key is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Value <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <textarea rows="5" type="text" ng-model="routeConfigKeyEdiables.value" class="form-control" id="textKey" name="textKey" required placeholder="Enter Value" title="Enter Value" />
+                            <div ng-if="submitted && isInvalidJson" class="has-error">Invalid Json</div>
+                            <div ng-if="submitted&&editRoutekeyform.textKey.$error.required" class="has-error"> Value is required</div>
+                        </div>
+                        <div class="col-sm-4" style="margin-top:50px;">
+                            <input type="checkbox" class="col-sm-2" ng-model="isJsonChecked" name="typecheck" ng-click="JsonCheckbox()" /> IsJson
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{routeConfigKeyEdiables.Action}}" ng-click="updateRouteConfigKey(routeConfigKeyEdiables,editRoutekeyform, isJsonChecked)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelCancel('AddRouteConfigModel')" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editRouteModel" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editRouteform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="RouteName" class="col-sm-2 control-label">Route Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.RouteName" class="form-control" id="envRouteName" name="envRouteName" placeholder="Unique Route Name" required title="Enter Unique Route Name" ng-blur="RouteNameAvilabiltyCheck('Update')" />
+                            <span ng-if="isDupicateRouteName" class="has-error">Route Name already exists !</span>
+                            <span ng-if="submitted&&editRouteform.envRouteName.$error.required" class="has-error">Route Name is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">State Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.StateName" class="form-control" id="envStateName" name="envStateName" placeholder="State Name" required title="Enter State Name" />
+                            <span ng-if="submitted&&editRouteform.envStateName.$error.required" class="has-error">State Name is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Style</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.AppHeader" class="form-control" id="envAppHeader" name="envAppHeader" placeholder="App Header" required title="Enter App Header" />
+                            <span ng-if="submitted&&editRouteform.envAppHeader.$error.required" class="has-error">App Header is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">App Header</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.AppHeader" class="form-control" id="envAppHeader" name="envAppHeader" placeholder="App Header" required title="Enter App Header" />
+                            <span ng-if="submitted&&editRouteform.envAppHeader.$error.required" class="has-error">App Header is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-repeat="(key,value) in envEdiables.RouteConfig">
+                        <label for="title" class="col-sm-2 control-label">{{key}}</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-if="!IsObject(value)" ng-model="envEdiables.RouteConfig[key]" class="form-control" id="scriptSortOrder" placeholder="Enter {{key}}" title="Enter {{key}}" />
+                            <textarea rows="5" ng-if="IsObject(value)" json-text ng-model="envEdiables.RouteConfig[key]" class="form-control" id="scriptSortOrder" placeholder="Enter {{key}}" title="Enter {{key}}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateRoute(envEdiables,envEdiables.Action,editRouteform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editRouteModel',editRouteform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editScriptsModel" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" novalidate="" role="form" name="editScriptsform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Url <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.Url" class="form-control" id="scriptUrl" name="scriptUrl" placeholder="Url" required title="Enter Url" ng-blur="ScriptUrlAvilabiltyCheck()" />
+                            <span ng-if="isDuplicateScriptUrl" class="has-error">Script Url already exists !</span>
+                            <span ng-show="submitted && editScriptsform.scriptUrl.$error.required" class="has-error">Script Url is required</span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Sort Order <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="number" ng-model="envEdiables.SortOrder" class="form-control" id="scriptSortOrder" name="scriptOrder" placeholder="Sort Order" required title="Enter Sort Order" />
+                            <span ng-show="submitted && editScriptsform.scriptOrder.$error.required" class="has-error">Sort Order is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updatePartnerScripts(envEdiables,editScriptsform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editScriptsModel',editScriptsform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editStylesModel" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editStylesform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Url <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.Url" class="form-control" id="stylesUrl" name="stylesUrl" placeholder="Url" required title="Enter Url" ng-blur="StylesAvilabiltyCheck()" />
+                            <span ng-if="isDuplicateStyle" class="has-error">Style Url already exists !</span>
+                            <span ng-if="submitted && editStylesform.stylesUrl.$error.required" class="has-error">Style Url is required</span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Sort Order <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="number" ng-model="envEdiables.SortOrder" class="form-control" id="stylesSortOrder" placeholder="Sort Order" name="stylesSortOrder" required title="Enter Sort Order" />
+                            <span ng-if="submitted && editStylesform.stylesSortOrder.$error.required" class="has-error">Sort Order is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updatePartnerStyles(envEdiables,editStylesform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editStylesModel',editStylesform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpTelemetry" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxptelemetryform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Key <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.key" ng-blur="keyDuplicateCheck('Telemetry')" class="form-control" id="telemetryKey" name="telemetryKey" placeholder="Enter Telemetry Key" required title="Enter key" />
+                            <span ng-if="submitted && editfxptelemetryform.telemetryKey.$error.required" class="has-error">Enter Telemetry Key</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Key already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Value <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.value" class="form-control" id="telemetryValue" name="telemetryValue" placeholder="Enter Telemetry Value" required title="Enter value" />
+                            <span ng-if="submitted && editfxptelemetryform.telemetryValue.$error.required" class="has-error">Enter Telemetry Value</span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpTelemetry(envEdiables,editfxptelemetryform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpTelemetry',editfxptelemetryform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editFxpOBOStrings" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxpobostringsform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Key <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.key" ng-blur="keyDuplicateCheck('OBOUIStrings')" class="form-control" id="txtoboStringsKey" name="txtoboStringsKey" placeholder="Key" title="Enter key" required />
+                            <span ng-if="submitted && editfxpobostringsform.txtoboStringsKey.$error.required" class="has-error">Enter OBO String Key</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Key already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Value <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.value" class="form-control" id="txtoboStringsValue" name="txtoboStringsValue" placeholder="Value" required title="Enter value" />
+                            <span ng-if="submitted && editfxpobostringsform.txtoboStringsValue.$error.required" class="has-error">Enter OBO String value</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpOBOStrings(envEdiables,editfxpobostringsform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpOBOStrings',editfxpobostringsform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpMessages" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxpmessagesform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Message Name <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.MessageName" class="form-control" id="messageName"
+                                   ng-blur="MessageNameAvilabiltyCheck()" name="messageName" placeholder="Message Name" required title="Enter Message Name" />
+                            <span ng-if="isDulplicateKey" class="has-error">Message Name already exists !</span>
+                            <span ng-if="submitted && editfxpmessagesform.messageName.$error.required" class="has-error">Enter Message Name</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Error Message <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <textarea type="text" ng-model="envEdiables.ErrorMessage" class="form-control" id="txtErrorMessage" name="txtErrorMessage" placeholder="Error Message" required title="Enter Error Message" />
+                            <span ng-if="submitted && editfxpmessagesform.txtErrorMessage.$error.required" class="has-error">Enter Error Message</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Error Message Title </label>
+                        <div class="col-sm-6">
+                            <textarea type="text" ng-model="envEdiables.ErrorMessageTitle" class="form-control" id="txtErrorMessageTitle" name="txtErrorMessageTitle" placeholder="Error Message Title" title="Enter Error Message Title" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpMessage(envEdiables,editfxpmessagesform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpMessages',editfxpmessagesform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpUIStrings" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxpuistringsform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Key <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.key" ng-blur="keyDuplicateCheck('UIStrings')" class="form-control" id="txtUIStringsKey" required name="txtUIStringsKey" placeholder="Key" title="Enter key" />
+                            <span ng-if="submitted && editfxpuistringsform.txtUIStringsKey.$error.required" class="has-error">Enter key</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Key already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Value </label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.value" class="form-control" id="txtUIStringsValue" name="txtUIStringsValue" placeholder="Value"  title="Enter value" />
+                            <!--<span ng-if="submitted && editfxpuistringsform.txtUIStringsValue.$error.required" class="has-error">Enter value</span>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpUIStrings(envEdiables,editfxpuistringsform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpUIStrings',editfxpuistringsform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpHelpLinks" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxphelplinksform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Display Text <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.DisplayText" class="form-control" id="txtDisplayText" name="txtDisplayText" placeholder="Display Text" required title="Enter Display Text" ng-blur="keyDuplicateCheck('FxpHelpLinks')" />
+                            <span ng-if="submitted && editfxphelplinksform.txtDisplayText.$error.required" class="has-error">Enter Display Text</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Display Text already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Display Order <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.DisplayOrder" class="form-control" id="txtdisplayOrder" name="txtdisplayOrder" placeholder="Display Order" required title="Enter Display Order" />
+                            <span ng-if="submitted && editfxphelplinksform.txtdisplayOrder.$error.required" class="has-error">Enter Display Order</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpHelpLinks(envEdiables,editfxphelplinksform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpHelpLinks',editfxphelplinksform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpHelpSublinks" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editfxpsubhelplinksform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Display Text <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.DisplayText" class="form-control" id="txtDisplayText" name="txtDisplayText" placeholder="Display Text" required title="Enter Display Text" ng-blur="keyDuplicateCheck('FxpHelpChildLinks')" />
+                            <span ng-if="submitted && editfxpsubhelplinksform.txtDisplayText.$error.required" class="has-error">Enter Display Text</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Display Text already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Href <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.Href" class="form-control" id="txtHref" name="txtHref" placeholder="Href" required title="Enter Href" />
+                            <span ng-if="submitted && editfxpsubhelplinksform.txtHref.$error.required" class="has-error">Enter Href</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Title <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.Title" class="form-control" id="txtTitle" name="txtTitle" placeholder="Enter Title" required title="Enter Title" />
+                            <span ng-if="submitted && editfxpsubhelplinksform.txtTitle.$error.required" class="has-error">Enter Title</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Display Order <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.DisplayOrder" class="form-control" id="txtDisplayOrder" name="txtDisplayOrder" placeholder="Display Order" required title="Enter Display Order" />
+                            <span ng-if="submitted && editfxpsubhelplinksform.txtDisplayOrder.$error.required" class="has-error">Enter Display Order</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Open In line</label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.OpenInline" class="form-control" id="txtOpenInline" name="txtOpenInline" placeholder="Open In line" title="Enter Open In line" />
+                            
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpSubHelplinks(envEdiables,editfxpsubhelplinksform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpHelpSublinks',editfxpsubhelplinksform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editPartnerModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editPartnerModuleform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Module <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.partnerModule" class="form-control" id="partnerModule" name="partnerModule" placeholder="Partner Module" required title="Enter Module" ng-blur="PartnerModuleAvilabiltyCheck()" />
+                            <span ng-if="isDuplicatePartnerModule" class="has-error">Partner Module already exists !</span>
+                            <span ng-if="submitted && editPartnerModuleform.partnerModule.$error.required" class="has-error">Partner Module is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updatePartnerModule(envEdiables,editPartnerModuleform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editPartnerModule',editPartnerModuleform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmRouteModal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteRouteConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmRouteModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmRouteKeyModal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteRouteKeyConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmRouteKeyModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmPartnerModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deletePartnerModuleDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmPartnerModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmScriptsModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deletePartnerScriptsDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmScriptsModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmStylesModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deletePartnerStylesDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmStylesModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmTelemetryModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteTelemetryDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmTelemetryModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFxpFooter" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editFxpFooterform" autocomplete="off">
+                    <div class="form-group" ng-if="envEdiables.Action==='Add'">
+                        <label for="title" class="col-sm-4 control-label">Alignment<span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <select name="sleAlignment" ng-model="envEdiables.Alignment" class="form-control" id="sleAlignment" required>
+                                <option value="">Select Alignment</option>
+                                <option value="LeftAlignedLinks">LeftAlignedLinks</option>
+                                <option value="RightAlignedLinks">RightAlignedLinks</option> 
+                            </select>
+                            <span ng-if="submitted && editFxpFooterform.sleAlignment.$error.required" class="has-error">Alignment is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Element Type <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.ElementType" class="form-control" id="txtElementType" name="txtElementType" placeholder="Element Type" required title="Enter Element Type" />
+                            <span ng-if="submitted && editFxpFooterform.txtElementType.$error.required" class="has-error">Element Type is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Display Text <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.DisplayText" class="form-control" id="txtDisplayText" name="txtDisplayText" placeholder="Display Text" required title="Enter Display Text" />
+                            <span ng-if="submitted && editFxpFooterform.txtDisplayText.$error.required" class="has-error">Display Text is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="title" class="col-sm-4 control-label">TabIndex </label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.TabIndex" class="form-control" id="txtTabIndex" name="txtTabIndex" placeholder="TabIndex" title="Enter TabIndex" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">CSS Class </label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.cssClass" class="form-control" id="txtcssClass" name="txtcssClass" placeholder="Css Class" title="Enter Css Class" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Href  </label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.href" class="form-control" id="txthref" name="txthref" placeholder="Href" title="Enter Href" />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Image Path</label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.ImagePath" class="form-control" id="txttarget" name="txtImage" placeholder="Image Path" title="Enter Image Path" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateFxpFooter(envEdiables,editFxpFooterform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editFxpFooter',editFxpFooterform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="confirmFooterModal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteFooter()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmFooterModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editPersona" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editPersonaform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Id <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="number" ng-model="envEdiables.Id" class="form-control" id="personId" name="personId" placeholder="Persona Id" required title="Enter Persona Id" />
+                            <span ng-if="submitted && editPersonaform.personId.$error.required" class="has-error">Enter Valid Persona ID</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Perosna Name <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.Name" ng-blur="keyDuplicateCheck('Persona')" class="form-control" name="personaName" placeholder="Persona" required title="Enter Persona Name" />
+                            <span ng-if="submitted && editPersonaform.personaName.$error.required" class="has-error">Enter Valid Persona Name</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Name already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updatePersona(envEdiables,editPersonaform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editPersona',editPersonaform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDeletePersona" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deletePersonaConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmDeletePersona')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editPersonaRoles" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editPersonaRoleform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Role Id <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="number" ng-model="envEdiables.RoleId" class="form-control" id="txtRoleID" name="txtRoleID" placeholder="Role ID" required title="Enter Display Text" />
+                            <span ng-if="submitted && editPersonaRoleform.txtRoleID.$error.required" class="has-error">Enter valid Role Id</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Role Name <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.RoleName" ng-blur="keyDuplicateCheck('PersonaRole')" class="form-control" id="txtRoleName" name="txtRoleName" placeholder="Role Name" required title="Enter Role Name" />
+                            <span ng-if="submitted && editPersonaRoleform.txtRoleName.$error.required" class="has-error">Enter valid Role Name</span>
+                            <span ng-if="isDulplicateKey" class="has-error">Role Name already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updatePersonaRole(envEdiables,editPersonaRoleform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editPersonaRoles',editPersonaRoleform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDeletePersonaRole" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deletePersonaRoleConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmDeletePersonaRole')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDeleteHelpLink" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteHelpConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmDeleteHelpLink')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmDeleteHelpSubLink" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteHelpSubConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmDeleteHelpSubLink')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmOBOStrings" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteOBOStringsDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmOBOStrings')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmUIStrings" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteUIStringsDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmUIStrings')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmMessages" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteMessageDetails()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmMessages')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="editCouchBaseSettings" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editCouchSettingsform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Couch Base Login Url</label>
+                        <div class="col-sm-8">
+                            <input type="url" ng-model="envEdiables.CouchBaseLoginUrl" class="form-control" id="CouchBaseLoginUrl" name="CouchBaseLoginUrl" placeholder="Couch Base Login Url" required title="Enter Couch Base Login Url" />
+                            <span ng-if="submitted && editCouchSettingsform.CouchBaseLoginUrl.$error.required" class="has-error">Enter valid Couch Base Login Url</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Couch Access Token</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.CouchAccessToken" class="form-control" id="CouchAccessToken" name="CouchAccessToken" placeholder="Couch Access Token" required title="Enter Couch Access Token" />
+                            <span ng-if="submitted && editCouchSettingsform.CouchAccessToken.$error.required" class="has-error">Enter valid Couch Access Token</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateCouchBaseSettings(envEdiables,editCouchSettingsform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editCouchBaseSettings',editCouchSettingsform)" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editAdalAuthExcludeExtn" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="editAdalAuthform" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Module</label>
+                        <div class="col-sm-8">
+                            <input type="text" ng-model="envEdiables.AdalAuthExcludeExtn" class="form-control" id="AdalAuthExcludeExtn" name="AdalAuthExcludeExtn" placeholder="Adal Auth Exclude Extn" required title="Enter Adal Auth Exclude  Extn" />
+                            <span ng-if="submitted && editAdalAuthform.AdalAuthExcludeExtn.$error.required" class="has-error">Enter valid Adal Authentication Exclude Extnension</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span>
+                                <input type="submit" value="{{envEdiables.ButtonText}}" ng-click="updateAdalAuthExcludeExtn(envEdiables,editAdalAuthform)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modalClose('editAdalAuthExcludeExtn','editAdalAuthform')" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

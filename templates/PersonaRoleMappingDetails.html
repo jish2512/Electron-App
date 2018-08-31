@@ -1,0 +1,67 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchPersona" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br /><br />
+    <table class="table" id="tblPersonaRoles">
+        <thead>
+            <tr>
+                
+                <td style="width:2% !important"></td>
+                <td style="width:2% !important">ID</td>
+                <td style="width:25%">Persona</td>
+                <td style="float:right;" align="right">
+                    <div class="round-edit" ng-click="editPersona(null,'Add',-1)" style="" title="Add New Persona">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody ng-repeat="persona in PersonaRoles|filter:searchPersona">
+            <tr ng-class="{'active': isDisplay}"> 
+                <td ng-click="isDisplay=!isDisplay">
+                    <i class="glyphicon glyphicon-chevron-down" ng-show="!isDisplay"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="isDisplay"></i>
+                </td>
+                <td>{{persona.Id}}</td>
+                <td ng-click="isDisplay=!isDisplay">
+
+                    {{persona.Name}}
+                </td>
+                <td align="right">
+                    <span class="edit-span" title="Edit" ng-click="editPersona(persona,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deletePersona($index)">&#xE107;</span>
+                </td>
+            </tr>
+            <tr ng-show="isDisplay" style="background-color: #dae2d1;">
+                <td colspan="5" style="padding-left:35px">
+
+                    <table class="table">
+                        <tr style="background:rgb(234, 214, 177);">
+                            <td style="width:7%">Role ID</td>
+                            <td style="width:80%">Role Name</td>
+                            <td align="right">
+                                <div class="round-edit" ng-click="editPersonaRole(persona,null,'Add',-1)" style="" title="Add New Persona Role">+</div>
+                            </td>
+                        </tr>
+                        <tbody>
+                            <tr ng-repeat="personaRole in persona.Roles">
+                                <td>{{personaRole.RoleId}} </td>
+                                <td>{{personaRole.RoleName}} </td>
+                                <td align="right">
+                                    <span class="edit-span" title="Edit" ng-click="editPersonaRole(persona,personaRole,'Edit',$index)">&#xE104;</span>
+                                    <span class="edit-span" title="Delete" ng-click="deletePersonaRole($parent.$index,$index)">&#xE107;</span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+

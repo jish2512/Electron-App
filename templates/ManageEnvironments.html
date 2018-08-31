@@ -1,0 +1,138 @@
+﻿<div class="table-responsive">
+    <h3>
+        Environments
+    </h3>
+    <table class="table table-striped td-Break" id="tblEnvironments">
+        <colgroup>
+            <col style="width:5%">
+            <col class="col-md-2">
+            <col class="col-md-1">
+            <col class="col-md-3">
+            <col class="col-md-2"> 
+            <col class="col-sm-1">
+        </colgroup>
+
+
+        <thead>
+
+            <tr>
+                <td style="width:2% !important">#</td>
+                <td>Environment</td>
+                <td>Source</td>
+                <td>LocalPath</td>
+                <td>Storage Name</td> 
+                <td align="right">
+                    <div class="round-edit" ng-click="editConfiguredEnvironments(null,'Add',-1)" style="display:none" title="Add New Environment Key">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="env in Environments">
+                <td ng-bind="$index+1"></td>
+                <td>{{env.EnvironmentName}}</td>
+                <td>{{env.Source}}</td>
+                <td>{{env.LocalPath}}</td>
+                <td>{{env.StorageName}}</td> 
+                <td align="right" style="display:block;">
+                    <span class="edit-span" title="Edit" ng-click="editConfiguredEnvironments(env,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deleteEnvironment(env,$index)">&#xE107;</span>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="modal fade" id="editEnvironments" data-backdrop="static">
+    <div class="modal-dialog" style="width:780px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="wizardForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Source<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <select name="Source" ng-model="envEdiables.Source" class="form-control" id="sleSource" required>
+                                <option value="">Select Source</option>
+                                <option value="blob">Blob</option>
+                                <option value="file">File</option>
+                            </select>
+                            <span ng-if="submitted && wizardForm.Source.$error.required" class="has-error">Please select Source</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="envEdiables.Source=='file'">
+                        <label for="title" class="col-sm-4 control-label">File Source Type<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <select name="fileSourceType" ng-model="envEdiables.FileSourceType" class="form-control" id="sleSource" required>
+                                <option value="">Select File Source</option>
+                                <option value="confit">Blob Files</option>
+                                <option value="mock">Mock Files</option>
+                            </select>
+                            <span ng-if="isFormsubmitted && wizardForm.fileSourceType.$error.required" class="has-error">Please select File Source</span>
+
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="envEdiables.Source=='blob'">
+                        <label for="title" class="col-sm-4 control-label">Environment<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.EnvironmentName" class="form-control" name="txtEnvironment" id="txtEnvironment" placeholder="Enter Environment Name" required title="Enter Environment" ng-blur="EnvironmentNameAvilabiltyCheck()"/>
+                            <span ng-if="submitted && wizardForm.txtEnvironment.$error.required" class="has-error">Please enter Environment Name</span>
+                            <span ng-if="isDupicateEnvironmentName" class="has-error">Environment Name is already exists !</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="envEdiables.Source=='blob'">
+                        <label for="title" class="col-sm-4 control-label">Storage Name<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.StorageName" class="form-control" name="txtStorageName" id="inptStorageName" placeholder="Enter Storage Name" required title="Enter Storage Name" />
+                            <span ng-if="submitted && wizardForm.txtStorageName.$error.required" class="has-error">Please Enter Storage Name</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="envEdiables.Source=='blob'">
+                        <label for="title" class="col-sm-4 control-label">Storage Key<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.StorageKey"  class="form-control" name="txtStorageKey" id="inptStorageKey" placeholder="Enter Storage Key" required title="Enter Storage Key" />
+                            <span ng-if="submitted && wizardForm.txtStorageKey.$error.required" class="has-error">Please Enter Storage Key</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="envEdiables.Source=='file'">
+                        <label for="title" class="col-sm-4 control-label">Path<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="file" name="fle" id="selectFolder" onchange="angular.element(this).scope().selectFolder(this)" required class="form-control" placeholder="Enter Path" title="Enter Path" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+                            <input type="text" name="txtFile" ng-model="envEdiables.LocalPath" required style="display:none" />
+                             <span class="spanforPath">{{envEdiables.LocalPath}}</span>
+                            <span ng-if="submitted && wizardForm.txtFile.$error.required" class="has-error">Please select File path</span>
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <span>
+                                <input type="submit" value={{envEdiables.ButtonText}} ng-click="updateConfiguredEnvironments(wizardForm)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelCancel('editEnvironments')" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmEnvironmentsModule" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteEnvironmentConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmEnvironmentsModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

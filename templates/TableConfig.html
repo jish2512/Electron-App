@@ -1,0 +1,134 @@
+﻿<style>
+    td {
+        word-break: break-all;
+    }
+</style>
+<div class="table-responsive">
+    <h3>
+        Table View
+    </h3>
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchConfig" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <table class="table table-striped td-Breake" id="tblConfig">
+        <colgroup>
+            <col style="width:5%">
+            <col class="col-md-2">
+            <col class="col-md-1">
+            <col class="col-md-1">
+            <col class="col-md-2">
+            <col style="width:30%">
+            <col class="col-md-1">
+        </colgroup>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Feature</td>
+                <td>Feature Key</td>
+                <td>IsBlob</td>
+                <td>Key</td>
+                <td style="width:10%">Value</td>
+                <td align="right">
+                    <div class="round-edit" ng-click="editTableKey(null,'Add',-1)" style="" title="Add New Table Config Key">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="env in TableConfig|filter:searchConfig" ng-if="env.IsDeleted!=true">
+                <td ng-bind="$index+1"></td>
+                <td>{{env.PartitionKey}}</td>
+                <td>{{env.RowKey}}</td>
+                <td>{{env.IsBlob}}</td>
+                <td>{{env.Key}}</td>
+                <td>{{env.Value}}</td>
+                <td align="right" style="display:block;">
+                    <span class="edit-span" title="Edit" ng-click="editTableKey(env,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deleteTableKey(env,$index)">&#xE107;</span>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="modal fade" id="editTableContent">
+    <div class="modal-dialog" style="width:780px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Table Content</h4>
+            </div><div class="modal-body">
+                <form class="form-horizontal" role="form" name="tableContentForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Partition Key<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-blur="duplicateCheckPartionRowkey(envEdiables)" ng-model="envEdiables.PartitionKey" class="form-control" name="txtPartitionKey" placeholder="Enter Partition Key" required ng-disabled="envEdiables.Action=='Update'" title="Enter Partition Key"/>
+                            <span ng-if="isDulplicateKey" class="has-error">Partition Key already exists !</span>
+                            <span ng-if="submitted && tableContentForm.txtPartitionKey.$error.required" class="has-error">Partition Key Required !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Row Key<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-blur="duplicateCheckPartionRowkey(envEdiables)" ng-model="envEdiables.RowKey" class="form-control" name="txtrowKey" id="txtrowKey" placeholder="Enter Row Key" required ng-disabled="envEdiables.Action=='Update'" title="Enter Row key"/>
+                            <span ng-if="isDulplicateKey" class="has-error">Row Key already exists !</span>
+                            <span ng-if="submitted && tableContentForm.txtrowKey.$error.required" class="has-error">Row Key Required !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">IsBlob</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" ng-model="envEdiables.IsBlob" class="form-control" name="chkBlob" id="isBlob"  title="Is Blob" />
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Key<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <input type="text" ng-model="envEdiables.Key" class="form-control" name="txtKey" id="txtKey" placeholder="Enter Key" required title="Enter Key" />
+                            <span ng-if="submitted && tableContentForm.txtKey.$error.required" class="has-error">Key Required !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Value<span class="astrix">*</span></label>
+                        <div class="col-sm-6">
+                            <textarea rows="4" ng-model="envEdiables.Value" id="aValue" class="form-control" name="txtValue" placeholder="Enter value" required title="Enter value" />
+                            <span ng-if="submitted && tableContentForm.txtValue.$error.required" class="has-error">Value Required !</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="submit" value="Save" ng-click="updateTableKey(envEdiables,tableContentForm)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelCancel('editTableContent')" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmTableModule">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure to delete?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="deleteTableKeyConfirm()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="modelCancel('confirmTableModule')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 

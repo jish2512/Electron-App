@@ -1,0 +1,36 @@
+{
+    "errorMessage": "Please try this action again. If the issue persists, please reach out to <SMAPLEALAIS>@microsoft.com to get help. Please include further details about the action you were attempting, when the issue occurred.",
+    "errorMessageTitle": "An error has occurred.",
+     "ProfileServiceCallFailedError": {
+      "ErrorMessage": "System Error has occurred: Unable to retrieve your profile information. Please try again",
+      "Title": ""
+    },
+    "AuthServiceReturnsBlankAppError": {
+      "ErrorMessage": "Your profile does not have permissions to access this content. Please contact IT support.",
+      "Title": ""
+    },
+    "AADAuthFailureError": {
+      "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+      "Title": ""
+    },
+    "UserProfileBusinessRoleFailureError": {
+      "ErrorMessage": "Your professional services profile is missing role configuration. Please contact IT support.",
+      "Title": ""
+    },
+    "UserProfileNotFoundError": {
+      "ErrorMessage": "Your profile is not mapped to a Dashboard. Please contact IT support.",
+      "Title": ""
+    },
+    "BootstrapError": {
+      "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+      "Title": ""
+    },
+    "AuthServiceReturnsBlankAppRoleError": {
+      "ErrorMessage": "Your profile does not have permissions to access this content. Please contact IT support.",
+      "Title": ""
+    },
+    "AuthzServiceReturnsError": {
+      "ErrorMessage": "Authorization failed. Please contact IT Support.",
+      "Title": ""
+    }
+  }

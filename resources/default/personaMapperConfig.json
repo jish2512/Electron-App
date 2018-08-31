@@ -1,0 +1,34 @@
+{
+  "Personas": {
+    "General": {
+      "FilePath": "generaluserdashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    },
+    "Functional": {
+      "FilePath": "functionalmanagerdashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    },
+    "Requestor": {
+      "FilePath": "requestordashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    },
+    "NonServicesUser": {
+      "FilePath": "nonservicesuserdashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    },
+    "ResourceManager": {
+      "FilePath": "resourcemanagerdashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    },
+    "Resource": {
+      "FilePath": "resourcedashboardconfig",
+      "Routes": [ ],
+      "FxpHelpLinks": [ ]
+    }
+  }
+}

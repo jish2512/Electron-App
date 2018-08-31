@@ -1,0 +1,92 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchUIString" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br /><br />
+    <table class="table" id="tblServiceApplication">
+        <thead>
+            <tr>
+                <td style="width:2% !important">#</td>
+                <td style="width:2% !important"></td>
+                <td style="width:35%">Key</td>
+                <td style="width:25%">Value</td>
+                <td style="float:right;" align="right">
+                    <div class="round-edit" ng-click="editUIStrings(null,null,'Add',-1)" style="" title="Add New UI String">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody ng-repeat="(key,value) in  FxpUIStrings|searchKeyValue:searchUIString">
+            <!--<tr ng-show="key=='OBOUIStrings'">
+                <td ng-bind="$index+1"></td>
+                <td ng-click="isDisplay=!isDisplay">
+                    <i class="glyphicon glyphicon-chevron-down" ng-show="!isDisplay"></i>
+                    <i class="glyphicon glyphicon-chevron-up" ng-show="isDisplay"></i>
+                </td>
+                <td ng-click="isDisplay=!isDisplay">
+                    {{key}}
+                </td>
+
+                <td></td>
+
+            </tr>-->
+            <tr ng-if="key!='OBOUIStrings'">
+                <td ng-bind="$index+1"></td>
+                <td></td>
+                <td>
+                    {{key}}
+                </td>
+                <td>
+                    {{value}}
+                </td>
+
+                <td align="right">
+                    <span class="edit-span" title="Edit" ng-click="editUIStrings(key,value,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deleteUIStrings(key,$index)">&#xE107;</span>
+                </td>
+            </tr>
+            <!--<tr ng-if="isDisplay" style="background-color: #dae2d1;">
+                <td colspan="5" style="padding-left:20px;padding-right:20px">
+                    <table class="table table-striped" id="tblObi">
+                        <colgroup>
+                            <col style="width:5%">
+                            <col class="col-md-2">
+                            <col class="col-md-1">
+                            <col class="col-md-1">
+
+                        </colgroup>
+
+                        <tr>
+                            <td style="width:2% !important">#</td>
+                            <td style="width:35%">Key</td>
+                            <td style="width:25%">Value</td>
+                            <td style="width:10%;float:right;" align="right">
+                                <div class="round-edit" ng-click="editOBOStrings(null,null,'Add',-1)" style="" title="Add New Environment Key">+</div>
+                            </td>
+                        </tr>
+
+                        <tbody>
+                            <tr ng-repeat="(key,value) in FxpUIStrings.OBOUIStrings">
+                                <td ng-bind="$index+1"></td>
+                                <td>
+                                    {{key}}
+                                </td>
+                                <td>
+                                    {{value}}
+                                </td>
+
+                                <td align="right">
+                                    <span class="edit-span" title="Edit" ng-click="editOBOStrings(key,value,'Edit',$index)">&#xE104;</span>
+                                    <span class="edit-span" title="Delete" ng-click="deleteOBOStrings(key)">&#xE107;</span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>-->
+        </tbody>
+    </table>
+</div>

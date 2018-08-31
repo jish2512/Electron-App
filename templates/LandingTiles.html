@@ -1,0 +1,39 @@
+﻿
+
+<div class="row main">
+
+    <div class="panel-heading">
+        <div class="panel-title text-center">
+            <h2 class="title">Configuration Editor</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="main-login main-center">
+
+        <div class="form-group">
+            <div class="form-group">
+                <label for="title" class="control-label"><b>Environment</b></label>
+                <select class="form-control" ng-model="selectedEnvironment" ng-change="onChangeEnvironment(selectedEnvironment)"
+                        ng-options="item as item.EnvironmentName for item in configEnv"
+                        style="width: 250px;">
+                    <option value="">Select Environment</option>
+                </select>
+            </div>
+        </div>
+        <div class="btns-big tileBlueLight" style="width:250px;height:50px;line-height:50px" ng-click="onNavigate('PartnerDetails')">
+            <span class="tile-content" title="Navigate to Partner Related Details such as Routes,Partner Modules, Scripts and Styles"> Partner Details </span>
+            <span class="go-span" title="Navigate to Partner Related Details such as Routes,Partner Modules, Scripts and Styles">&#xE0AC;</span>
+
+        </div>
+
+        <div class="btns-big tileBlueLight" style="width:250px;height:50px;line-height:50px" ng-click="onNavigate('FXPConfig')">
+            <span class="tile-content" title="Navigate to Fxp Related Details such as Telemetry,UI Strings, Messages,Persona Roles,Footer Details and Help Links"> FXP Configuration  </span>
+            <span class="go-span" title="Navigate to Fxp Related Details such as Telemetry,UI Strings, Messages,Persona Roles,Footer Details and Help Links">&#xE0AC;</span>
+        </div>
+        <div class="btns-big tileBlueLight" style="width:250px;height:50px;line-height:50px" ng-if="(selectedEnvironment.Source==='blob')" ng-click="onNavigate('tableConfig')">
+            <span class="tile-content" title="Navigate to Table Contents with map to blob urls"> Table Config </span>
+            <span class="go-span" title="Navigate to Table Contents with map to blob urls">&#xE0AC;</span>
+        </div>
+    </div>
+</div> 
+ 

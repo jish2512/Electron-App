@@ -1,0 +1,44 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control" style="float:right;width:23%;">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchScripts" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <h3></h3>
+    <table class="table table-striped" id="tblScripts">
+        <colgroup>
+            <col style="width:4%">
+            <col class="col-md-8">
+            <col class="col-md-2">
+            <col class="col-md-1">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Url</td>
+                <td>SortOrder</td>
+                <td align="right">
+                    <div class="round-edit" ng-click="editPrtnerScripts(null,'Add',-1)" style="" title="Add New Scripts">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="envScripts in Scripts|filter:searchScripts">
+                <td ng-bind="$index+1"></td>
+                <td>
+                    {{envScripts.Url}}
+                </td>
+                <td>
+                    {{envScripts.SortOrder}}
+                </td>
+                <td align="right">
+                    <span class="edit-span" title="Edit" ng-click="editPrtnerScripts(envScripts,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deletePartnerScripts(envScripts,$index)">&#xE107;</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

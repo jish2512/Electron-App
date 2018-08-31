@@ -1,0 +1,270 @@
+{
+  "PartnerAssets": {
+    "Scripts": [
+      {
+        "Url": "http://fxppartnerapp.azurewebsites.net/scripts/partnerappCtrl.js",
+        "SortOrder": 1
+      },
+      {
+        "Url": "http://fxppartnerapp.azurewebsites.net/scripts/SelfHostPartner.js",
+        "SortOrder": 2
+      },
+
+      /*********************one Profile*******************/
+
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/js/App/OneProfile/Bundle/OneprofileFXP.min.js",
+        "SortOrder": 1
+      },
+
+
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/base.min.js",
+        "SortOrder": 5
+      },
+
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/ui-bootstrap-tpls.min.js",
+        "SortOrder": 8
+      },
+
+      //{
+      //  "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/ui-bootstrap-tpls-1.1.2.min.js",
+      //  "SortOrder": 7
+      //},
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/ui.min.js",
+        "SortOrder": 11
+      },
+
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/vx.grid.all.min.js",
+        "SortOrder": 29
+      },
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/angular-pageslide-directive.min.js",
+        "SortOrder": 30
+      },
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/d3.min.js",
+        "SortOrder": 31
+      },
+      {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/lib/OneProfile/js/ng-knob.min.js",
+        "SortOrder": 32
+      }
+
+      /*********************one Profile*******************/
+
+    ],
+    "Styles": [
+      {
+        "Url": "https://maxcdn.bootstrapcdn.azurewebsites.net/bootstrap/3.3.6/css/bootstrap.min.css",
+        "SortOrder": 1
+      } ,
+     {
+        "Url": "https://OneProfile-GRMDevCDN.azureedge.net/js/App/OneProfile/Bundle/OneprofileFXPCss.min.css",
+        "SortOrder": 2
+      }
+    ]
+  },
+  "PartnerModules": [
+    "widget.scrollbar",
+    "ngSanitize",
+    "vx.grid.modules",
+    "pageslide-directive",
+    "ui.knob",
+    "SelfHostPartnerModule"
+  ],
+  "BaseConfiguration": {
+    "Telemetry": {
+      "InstrumentationKey": "05f8f6c0-c4c1-476d-9cd7-5ed08bc9df4c",
+      "TelemetryRemoteStoreName": "telemetry",
+      "TelemetryLocalStoreName": "telemetry",
+      "TelemetryRemoteServerUrl": "https://FXPDataServer.cloudapp.net:4984/",
+      "DiagnosticLevel": 3,
+      "EventEnabled": true,
+      "DebugEnabled": false,
+      "PerformanceMetricEnabled": true,
+      "PerfMarkersEnabled" : true,
+      "LoggingMode": 1,
+      "PouchDbMode": 0,
+      "Live": true,
+      "Retry": true
+    },
+    "CouchBaseSettings": {
+      "CouchBaseLoginUrl": "https://fxpdataserver.cloudapp.net/",
+      "CouchAccessToken": "adal.access.token.keyhttps://microsoft.onmicrosoft.com/FXPCouchBaseAPI"
+    },
+    "FxpConfigurationStrings": {
+       "AdalAuthExcludeExtn": "\\.(html?|js|css|gif|jpe?g|png|bmp)",
+        "UIStrings": {
+        "AppHeader": "Professional Services",
+        "AppHeaderAlias": "PS",
+        "ViewFullProfile": "View full Profile",
+        "DefaultValueOnError": "",
+        "WaffleMenu": "Waffle Menu",
+        "Menu": "Menu",
+        "Domain": "Domain",
+        "ReportTo": "Reports To",
+        "ProfileNotFound": "This profile does not exist. Please click on the create profile button to create the user profile",
+        "ErrorRetrieving": "Error Retrieving Profiles. Please try again. If the problem persists, please contact IT support.",
+        "SelectedUserisCurrentLoggedInUserError": "Selected User is same as current logged-in User. Please Search for another user",
+        "CreateProfileStateName": "oneprofile.CreateUserProfile",
+        //OBO UI Strings
+        "OBOUIStrings": {
+          "ActingOnBehalfOf": "ACTING ON BEHALF OF :",
+          "CreateProfile": "CREATE PROFILE",
+          "OBOReset": "RESET",
+          "OBOSearchLabel": "Search for the user below you would like to act on behalf of",
+          "Administrator": "Administrator",
+          "Actonbehalfof": "Act on behalf of",
+          "ActOnBehalfOfButton": "ACT ON BEHALF"
+        }
+      },
+      "UIMessages": {
+        "errorMessage": "Please try this action again. If the issue persists, please reach out to <SMAPLEALAIS>@microsoft.com to get help. Please include further details about the action you were attempting, when the issue occurred.",
+        "errorMessageTitle": "An error has occurred.",
+        "ProfileServiceCallFailedError": {
+          "ErrorMessage": "System Error has occurred: Unable to retrieve your  profile information. Please try again",
+          "ErrorMessageTitle": "Error in getBasicProfile from service"
+        },
+        "AuthServiceReturnsBlankAppError": {
+          "ErrorMessage": "Your profile does not have permissions to access this content. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getUserClaims from service which Returns Error"
+        },
+        "AADAuthFailureError": {
+          "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+          "ErrorMessageTitle": "Error occured while retrieving JWT Token"
+        },
+        "UserProfileBusinessRoleFailureError": {
+          "ErrorMessage": "Your professional services profile is missing role configuration. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getBasicProfileSvc from service Fails to return Business Role"
+        },
+        "UserProfileBusinessRoleMissingError": {
+          "ErrorMessage": "Your professional services profile is missing role configuration. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getBasicProfileSvc from service Business Role is missing"
+        },
+        "UserProfileNotFoundError": {
+          "ErrorMessage": "Your profile is not mapped to a Dashboard. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getBasicProfileSvc from service returns UserProfile is Null"
+        },
+        "BootstrapError": {
+          "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+          "ErrorMessageTitle": ""
+        },
+        "AuthServiceReturnsBlankAppRoleError": {
+          "ErrorMessage": "Your profile does not have permissions to access this content. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getUserClaims from service which returns Blank App Roles"
+        },
+        "AuthzServiceReturnsError": {
+          "ErrorMessage": "Authorization failed. Please contact IT Support.",
+          "ErrorMessageTitle": ""
+        },
+        "ConfigServiceReturnsNullError": {
+          "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+          "ErrorMessageTitle": "Error in Config Service which returns null"
+        },
+        "GetUserClaimsSvcReturnsError": {
+          "ErrorMessage": "Authorization failed. Please contact IT Support.",
+          "ErrorMessageTitle": "Error in getUserClaims from service"
+        },
+        "SearchProfileSvcNotWorkingError": {
+          "ErrorMessage": "System Error has occurred. Please try again. If the problem persists, please contact IT support.",
+          "ErrorMessageTitle": "Error in SearchProfile service"
+        },
+        "SearchProfileSvcReturnsError": {
+          "ErrorMessage": "Profile you are searching does not exist. Please Click on Create Profile",
+          "ErrorMessageTitle": "Error in SearchProfile service"
+        },
+        "ProfileSelectError": {
+          "ErrorMessage": "Profile you have selected does not exist. Please contact IT support.",
+          "ErrorMessageTitle": "Error in SearchProfile service"
+        },
+
+        "UserSelectedProfileBusinessRoleFailureError": {
+          "ErrorMessage": "Your Selected User profile is missing role configuration. Please contact IT support.",
+          "ErrorMessageTitle": "Error in getBasicProfileSvc from service Fails to return Business Role"
+        },
+
+        "SelectedProfileRoles": {
+          "ErrorMessage": "System Error. Unable to load on behalf of user application roles. Please try again",
+          "ErrorMessageTitle": "Error while loading Onbehlafof user claims"
+        },
+
+        "SelectedUserProfileInformation": {
+          "ErrorMessage": "System Error. Unable to retrieve on behalf of user profile. Please try again",
+          "ErrorMessageTitle": "Error while retriving Onbehlafof user infromation"
+        },
+
+        "CreateProfileState": {
+          "ErrorMessage": "System Error.Create Profile state does not exist.Please contact IT support",
+          "ErrorMessageTitle": "Error in create profile"
+        },
+
+        "OBOUserActive": {
+          "ErrorMessage": "You are already acting On behalf of for <OBOusername>. Please exit current on behalf of user experience to initiate a new on behalf of workflow",
+          "ErrorMessageTitle": "OBO user is active"
+        }
+
+      }
+    },
+ "FxpFooterData": {
+      "LeftAlignedLinks": [
+        {
+          "ElementType": "a",
+          "DisplayText": "©2016 Microsoft ",
+          "TabIndex": "401",
+          "href": "https://microsoft.sharepoint.com/sites/lcaweb/Home/Copyrights-Trademarks-and-Patents/Copyrights",
+          "cssClass": "footer-item left"
+        },
+        {
+          "ElementType": "a",
+          "DisplayText": "Trademarks",
+          "href": "https://microsoft.sharepoint.com/sites/lcaweb/Home/Copyrights-Trademarks-and-Patents/Trademarks",
+          "TabIndex": "402",
+          "cssClass": "footer-item left"
+        },
+        {
+          "ElementType": "a",
+          "DisplayText": "Privacy & Cookies",
+          "href": "https://privacy.microsoft.com/en-us/privacystatement",
+          "TabIndex": "403",
+          "cssClass": "footer-item left"
+        },
+        {
+          "ElementType": "a",
+          "DisplayText": "Data Protection Notice ",
+          "href": "https://www.microsoft.com/EN-US/privacystatement/DPN/Default.aspx",
+          "TabIndex": "405",
+          "cssClass": "footer-item left"
+        },
+        {
+          "ElementType": "a",
+          "DisplayText": "Suggestions?",
+          "href": " https://connect.microsoft.com/",
+          "TabIndex": "406",
+          "cssClass": "footer-item suggestions left"
+        }
+      ],
+      "RightAlignedLinks": [
+        {
+          "ElementType": "span",
+          "DisplayText": "Build 07.15.2015 ",
+          "cssClass": "footer-item left build-pdng"
+        },
+        {
+          "ElementType": "img",
+          "DisplayText": "Microsoft",
+          "ImagePath": "http://fxpdev.azurewebsites.net/assets/logo/Micosoft_TileLogo.png",
+          "cssClass": "footer-item left ms-img-pdng"
+        },
+        {
+          "ElementType": "span",
+          "DisplayText": "Microsoft",
+          "cssClass": "footer-item left text-pdng"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control" style="float:right;width:23%;">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchModule" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <table class="table table-striped" id="tblPartnerModule">
+        <colgroup>
+            <col style="width:2%">
+            <col class="col-md-6">
+            <col class="col-md-1">
+        </colgroup>
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Partner Module</td>
+                <td align="right">
+                    <div class="round-edit" ng-click="editPartnerModule(null,'Add',$index)" style="" title="Add New Partner Modules">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="partnerModule in PartnerModules|filter:searchModule">
+                <td ng-bind="$index+1"></td>
+                <td>
+                    {{partnerModule}}
+                </td>
+                <td align="right" style="display:block;">
+                    <span class="edit-span" title="Edit" ng-click="editPartnerModule(partnerModule,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deletePartnerModule(partnerModule,$index)">&#xE107;</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+

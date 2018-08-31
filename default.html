@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html ng-app="fxpEnvironment">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FXP CONFIGURATION EDITOR</title>
+    <script>var $ = jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lib/css/site-min.css" rel="stylesheet" />
+    <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0/angular-material.js"></script>
+    <script src="appmodule.js"></script>
+    <script src="js/Directives/fxpMessage.js"></script>
+    <script src="js/Services/FxpContext.js"></script>
+    <!--<script src="lib/js/base.min.js"></script>-->
+    <script src="js/Constants/ApplicationStrings.js"></script>
+    <script src="js/Services/FxpMessageService.js"></script>
+    <script src="js/Factory/FxpModelFactory.js"></script>  
+    <script src="js/Factory/FxpPublishFactory.js"></script>
+    <script src="js/Factory/FxpEnvironmentLocalFactorys.js"></script>
+    <script src="js/Factory/FxpSetupFactory.js"></script> 
+    <script src="js/Controllers/PublishController.js"></script>
+    <script src="js/Controllers/DashboardController.js"></script>
+    <script src="js/Controllers/FxpConfigurationController.js"></script>
+    <script src="js/Controllers/ManageEnvironmentsController.js"></script>
+    <script src="js/Controllers/PartnerDetailsController.js"></script>
+    <script src="js/Controllers/WizardController.js"></script>
+    <script src="js/Controllers/TableConfigController.js"></script>
+    <script src="js/Controllers/CloneEnvironmentsController.js"></script>
+
+</head>
+
+<body>
+    <fxpmessage messages="messages"></fxpmessage>
+ 
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="wizardController">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a ng-if="isDisplayBack" data-v="{{isDisplayBack}}" class="navbar-brand hTitle edit-span" ng-click="navigateHome()">&#xE0BA;</a>
+                <a class="navbar-brand hTitle" ng-click="navigateHome()"> &nbsp;Fxp Configuration Editor</a>
+            </div>
+            <div id="Fxp_Environment" class="hTitle current-app">{{sourceEnvironment}} </div>
+            <div class="pull-right" aria-expanded="true">
+                <ul class="nav navbar-nav navbar-left"></ul>
+
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <span class="home-span" title="Navigate to Home" ng-click="navigateHome()">&#xE10F;</span>
+                    </li>
+                    <li class="dropdown">
+                        <a id="aSettings" href="#" data-toggle="dropdown" class="dropdown-toggle"
+                           aria-expanded="false">
+                            <i class="glyphicon glyphicon-cog"></i>
+                        </a>
+                        <ul class="dropdown-menu  pull-left">
+                            <li id="liPublish" data-disabled="true" ng-click=""
+                                tooltip="{{(!enablePublish) ? 'You have an error with this field' : ''}}"><a href="#" ng-click="onClickPublish()">PUBLISH</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" ng-click="onClickConfigNewEnvironment()">CONFIGURE NEW ENVIRONMENT</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" ui-sref="cloneEnvironment">CLONE ENVIRONMENTS</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" ui-sref="manageEnvironment">MANAGE ENVIRONMENTS</a></li>
+                            
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+    <br />
+    <br />
+    <br />
+    <div class="container env-Table">
+        <div ui-view></div>
+        <footer class="footer" style="display:none">
+            <p>&copy; 2016 - Microsoft.PS.FXP.Configurator</p>
+        </footer>
+    </div>  
+    <div class="modal fade" id="storageDetails" ng-controller="wizardController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" name="storageDetailsForm" autocomplete="off">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-4 control-label">Storage Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" ng-model="Storage.StorageName" class="form-control" id="txtDisplayText" placeholder="Storage Name" title="Enter Display Text" ng-disabled="envEdiables.Action=='Update'" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-4 control-label">Storage Key</label>
+                            <div class="col-sm-6">
+                                <input type="text" ng-model="Storage.StorageKey" class="form-control" id="txtHref" placeholder="Storage Key" title="Enter Href" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-10">
+                                <span>
+                                    <input type="button" value="Publish" ng-click="PublishLocal(Storage)" class="btn btn-primary" />
+                                </span>
+                                <input type="button" value="Cancel" ng-click="modelCancel('storageDetails')" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="confirmNewUser" ng-controller="wizardController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+                </div>
+                <div class="modal-body">
+                    There are no files to configure.Do you want to configure a new Environment?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="createNewEnvironment()">Ok</button>
+                    <button type="button" class="btn btn-default" ng-click="modelCancel('confirmNewUser')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<div ng-include="'templates/PublishWizard.html'"></div>

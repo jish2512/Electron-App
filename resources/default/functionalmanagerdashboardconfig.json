@@ -1,0 +1,49 @@
+{
+    "Routes": [
+        
+    ],
+    "ServiceApplications": [
+        {
+            "Id": 1,
+            "AppName": "GRM",
+            "AppChar": "G",
+            "AppUrl": "#",
+            "Icon": ""
+        },
+        {
+            "Id": 2,
+            "AppName": "Unicorn",
+            "AppChar": "U",
+            "AppUrl": "#",
+            "Icon": ""
+        },
+        {
+            "Id": 3,
+            "AppName": "Chronos",
+            "AppChar": "Ch",
+            "AppUrl": "#",
+            "Icon": ""
+        },
+        {
+            "Id": 4,
+            "AppName": "AppX",
+            "AppChar": "X",
+            "AppUrl": "#",
+            "Icon": ""
+        },
+        {
+            "Id": 5,
+            "AppName": "AppY",
+            "AppChar": "Y",
+            "AppUrl": "#",
+            "Icon": ""
+        }
+    ],
+    "ListofApps": [
+        "1",
+        "4"
+    ],
+    "FxpHelpLinks": [
+        
+    ]
+}

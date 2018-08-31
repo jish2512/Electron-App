@@ -1,0 +1,81 @@
+﻿<div style="width:100%">
+
+    <div class="row main">
+
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h2 class="title">Clone Existing Environment</h2>
+                <hr />
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" role="form" name="wizardForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="title" class="col-sm-4 control-label">Existing Environment<span class="astrix">*</span></label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="SelectedEnvironment" ng-model="selected.selectedEnvironment" ng-change="onChangeEnvironment(selected.selectedEnvironment)" required
+                                ng-options="item as item.EnvironmentName for item in configEnv"
+                                style="width: 250px;">
+                            <option value="">Select Environment</option>
+                        </select>
+                        <span ng-if="isFormsubmitted && wizardForm.SelectedEnvironment.$error.required" class="has-error">Please Select Environment</span>
+                    </div>
+                </div>
+                <div class="form-group"  ng-if="selected.selectedEnvironment!=undefined">
+                    <label for="title" class="col-sm-4 control-label">New Environment<span class="astrix">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" name="txtEnvironment" ng-model="selected.EnvironmentName" class="form-control" id="inptEnvironment" placeholder="Enter Environment" required title="Enter Environment" ng-blur="EnvironmentNameAvilabiltyCheck()" />
+                        <span ng-if="isFormsubmitted && wizardForm.txtEnvironment.$error.required" class="has-error">Please Enter  Environment Name</span>
+                        <span ng-if="isDuplicateEnvironmentName" class="has-error">Environment Name already exists !</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="selected.Source=='blob'">
+                    <label for="title" class="col-sm-4 control-label">Storage Name<span class="astrix">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" name="txtStorageName" ng-model="selected.StorageName" class="form-control" id="inptStorageName" placeholder="Enter Storage Name" required title="Enter Storage Name" />
+                        <span ng-if="isFormsubmitted && wizardForm.txtStorageName.$error.required" class="has-error">Please Enter Storage Name</span>
+
+                    </div>
+                </div>
+                <div class="form-group" ng-if="selected.Source=='blob'">
+                    <label for="title" class="col-sm-4 control-label">Storage Key<span class="astrix">*</span></label>
+                    <div class="col-sm-8">
+                        <input type="text" name="txtStorageKey" ng-model="selected.StorageKey" class="form-control" id="inptStorageKey" placeholder="Enter Storage Key" required title="Enter Storage Key" />
+                        <span ng-if="isFormsubmitted && wizardForm.txtStorageKey.$error.required" class="has-error">Please Enter Storage Key</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="selected.Source=='file'">
+                    <label for="title" class="col-sm-4 control-label">Path<span class="astrix">*</span></label>
+                    <div class="col-sm-8">
+                        <!--<label for="selectFolder" class="btn">Select Folder</label>-->
+                        <input type="file" id="selectFolder" name="fleSelector" onchange="angular.element(this).scope().selectFolder(this)" class="form-control" placeholder="Enter Path" required title="Enter Path" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+                        <input type="text" name="txtFile" ng-model="selected.LocalPath" required style="display:none" />
+                        <span class="spanforPath">{{selected.LocalPath}}</span>
+                        <!--<span ng-if="isFormsubmitted && wizardForm.txtFile.$error.required" class="has-error">Please Select Files</span>-->
+                        <br />
+                        <span ng-if="isDuplicatePath" class="has-error">Path already configured !</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <span>
+                            <input type="submit" value="Next" ng-click="onNext(wizardForm)" class="btn btn-primary" />
+                        </span>
+                        <input type="button" value="Cancel" ng-click="navigateHome()" class="btn btn-default" />
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<style>
+    .main-center {
+        max-width: 45% !important;
+    }
+</style>

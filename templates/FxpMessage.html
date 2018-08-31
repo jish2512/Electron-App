@@ -1,0 +1,13 @@
+﻿<div class="modal {{messageClass}}">
+    <div ng-repeat="message in messages" class="message message-{{message.MessageType}}" title="{{message.Message}}" ng-keydown="onMessageKeyDown($event)">
+        <div class="icon-container">
+            <i class="icon icon-{{message.MessageType}}"></i>
+        </div>
+        <div class="message-container">
+            <div class="message-content" tabindex="1">{{message.Message}}</div>
+            <button class="icon-container" type="button" tabindex="1" ng-click="closeMessage(message)" aria-label="Close" title="Click to close message" >
+                <i class="glyphicon glyphicon-remove pull-right"></i>
+            </button>
+        </div>
+    </div>
+</div>

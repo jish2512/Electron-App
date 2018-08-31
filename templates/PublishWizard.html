@@ -1,0 +1,112 @@
+﻿
+<div class="modal fade" id="publishWizard" data-backdrop="static" ng-controller="PublishController">
+    <div class="modal-dialog">
+        <div class="modal-content" ng-if="wizard==='storageDetailsWizard'">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Publish - Storage Details of <span class="text-uppercase">{{Storage.EnvironmentName}}</span></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" name="storageDetailsForm" autocomplete="off">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Storage Name<span class="astrix" title="mandatory field">*</span></label>
+                        <div class="input-group col-sm-6">
+                            <input type="text" ng-model="Storage.StorageName" class="form-control" name="txtName" id="txtName" placeholder="Storage Name" title="Enter Storage Name" required ng-disabled="!isEnableStorage"/>
+                            <div class="input-group-addon" ng-if="!isEnableStorage"><span class="edit-span" title="Edit" ng-click="enableEdit()">&#xE104;</span></div>
+                            <span ng-if="submitted&&storageDetailsForm.txtName.$error.required" class="has-error">Storage Name required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-4 control-label">Storage Key <span class="astrix" title="mandatory field">*</span></label>
+                        <div class="input-group col-sm-6">
+                            <input type="text" ng-model="Storage.StorageKey" class="form-control" name="txtKey" id="txtKey" placeholder="Storage Key" title="Enter Storage Key" required ng-disabled="!isEnableStorage" />
+
+                            <span ng-if="submitted&&storageDetailsForm.txtKey.$error.required" class="has-error">Storage Key required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span ng-if="submitted&&errorCMessage!=''" class="col-sm-6 has-error spanforPath">{{errorMessage}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span>
+                                <input type="button" value="Publish" ng-click="publish(Storage,storageDetailsForm)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelClose()" class="btn btn-default" />
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-content" ng-if="wizard==='publishFilesWizard'">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Select Files to Publish for ( <span class="text-uppercase">{{Storage.StorageName}}</span> ) Storage Account</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" name="filesWizardForm" autocomplete="off">
+                    <div class="table-responsive">
+                        <div class="input-group input-group-sm search-control help-Search">
+                            <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchFile" /><span class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                        </div>
+                        <br />
+                        <br />
+                        <table class="table table-striped" id="tblServiceApplication">
+                            <colgroup>
+                                <col style="width:7%">
+                                <col>
+                                <col style="width:15%">
+                            </colgroup>
+
+                            <thead>
+                                <tr>
+                                    <td align="center"><input id="chkSelectAll" ng-checked="selected" type="checkbox" ng-click="toggleAll($event)" ng-model="selected"></td>
+                                    <td>File</td>
+                                    <td>Type</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="option in FileOptions|filter:searchFile">
+                                    <td align="center">
+                                        <input type="checkbox" ng-model="option.selected" ng-change="optionToggled()">
+                                    </td>
+                                    <td>
+                                        {{option.value}}
+                                    </td>
+                                    <td>
+                                        {{(option.value!='tableConfig')?'Blob':'Table'}}
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <span ng-if="submitted&&errorMessage!=''" class="col-sm-10 has-error spanforPath">{{errorMessage}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 text-right">
+                            <span>
+                                <input type="submit" value="Publish" ng-click="publish(Files,filesWizardForm)" class="btn btn-primary" />
+                            </span>
+                            <input type="button" value="Cancel" ng-click="modelClose()" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+

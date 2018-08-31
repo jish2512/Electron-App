@@ -1,0 +1,43 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchTelemetryKey" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <div>
+        <table class="table" id="tblServiceApplication">
+            <thead>
+                <tr>
+                    <td style="width:2% !important">#</td>
+                    <td style="width:35%">Key</td>
+                    <td style="width:25%">Value</td>
+                    <td style="width:10%;float:right;" align="right">
+                        <div class="round-edit" ng-click="editTelemetry(null,null,'Add',-1)" style="" title="Add New Telemetry key">+</div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key,value) in BaseConfiguration.Telemetry|searchKeyValue: searchTelemetryKey">
+                    <td ng-bind="$index+1"></td>
+                    <td>
+                        {{key}}
+                    </td>
+                    <td>
+                        {{value}}
+                    </td>
+
+                    <td align="right">
+                        <span class="edit-span" title="Edit" ng-click="editTelemetry(key,value,'Edit',$index)">&#xE104;</span>
+                        <span class="edit-span" title="Delete" ng-click="deleteTelemetry(key,$index)">&#xE107;</span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,49 @@
+﻿<div ng-cloak> 
+    <div ng-include="'templates/Modalpopups.html'"></div>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Telemetry">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/BaseConfigurationTelemetry.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="UI Strings">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/FxpConfigUIStrings.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Persona Roles">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/PersonaRoleMappingDetails.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Messages">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/FxpConfigMessages.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Fxp Help Links">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/FxpHelpLinksDetails.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Fxp Help Links Mapping">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/PersonaHelpLinkMapping.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Fxp Footer Data">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/FxpFooterData.html'"></div>
+                </md-content>
+            </md-tab>
+            <!--<md-tab label="Others" style="display:none">
+                <md-content class="md-padding">
+                    <div ng-include="'templates/others.html'"></div>
+                </md-content>
+            </md-tab>-->
+
+
+        </md-tabs>
+    </md-content>
+</div>

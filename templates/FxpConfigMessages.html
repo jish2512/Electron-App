@@ -1,0 +1,46 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchMessage" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <table class="table table-striped" id="tblServiceApplication">
+        <colgroup> 
+            <col class="col-md-3">
+            <col class="col-md-4">
+            <col class="col-md-3">
+            <col class="col-md-2">
+        </colgroup>
+
+        <thead>
+            <tr> 
+                <td>Message</td>
+                <td>Error Message</td>
+                <td>Error Message Title</td>
+                <td style="float:right;" align="right">
+                    <div class="round-edit" ng-click="editMessages(null,null,'Add',-1)" style="" title="Add New Message">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="(key,messages) in  FxpConfigurationStrings.UIMessages|searchMessageFilter:searchMessage" ng-show="['errorMessage', 'errorMessageTitle'].indexOf(key)==-1">
+                <td>{{key}}</td>
+                <td>
+                    {{messages.ErrorMessage}}
+                </td>
+                <td>
+                    {{messages.ErrorMessageTitle}}
+                </td>
+
+                <td align="right">
+                    <span class="edit-span" title="Edit" ng-click="editMessages(key,messages,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deleteFxpMessages(key,$index)">&#xE107;</span>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

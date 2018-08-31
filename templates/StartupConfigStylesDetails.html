@@ -1,0 +1,43 @@
+﻿<div class="table-responsive">
+    <div class="input-group input-group-sm search-control help-Search">
+        <input type="text" class="form-control personaSearch" placeholder="Search" ng-model="searchStyle" /><span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span>
+        </span>
+    </div>
+    <br />
+    <br />
+    <table class="table table-striped" id="tblStyles">
+        <colgroup>
+            <col style="width:4%">
+            <col class="col-md-8">
+            <col class="col-md-2">
+            <col class="col-md-1">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Url</td>
+                <td>SortOrder</td>
+                <td align="right">
+                    <div class="round-edit" ng-click="editPrtnerStyles(null,'Add',-1)" style="" title="Add New Style">+</div>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="envStyles in Styles|filter:searchStyle">
+                <td ng-bind="$index+1"></td>
+                <td>
+                    {{envStyles.Url}}
+                </td>
+                <td>
+                    {{envStyles.SortOrder}}
+                </td>
+                <td align="right">
+                    <span class="edit-span" title="Edit" ng-click="editPrtnerStyles(envStyles,'Edit',$index)">&#xE104;</span>
+                    <span class="edit-span" title="Delete" ng-click="deletePartnerStyles(envStyles,$index)">&#xE107;</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

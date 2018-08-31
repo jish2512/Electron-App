@@ -1,0 +1,508 @@
+{
+  "Persona": [
+    {
+      "Name": "NonServicesUser",
+      "Id": "1",
+      "Roles": [
+        {
+          "RoleId": 34,
+          "RoleName": "Non Services User"
+        }
+      ]
+    },
+    {
+      "Name": "Resource",
+      "Id": "2",
+      "Roles": [
+        {
+          "RoleId": 1,
+          "RoleName": "Account Delivery Executive"
+        },
+        {
+          "RoleId": 2,
+          "RoleName": "Architect"
+        },
+        {
+          "RoleId": 3,
+          "RoleName": "Architect Manager"
+        },
+        {
+          "RoleId": 4,
+          "RoleName": "Associate Architect"
+        },
+        {
+          "RoleId": 5,
+          "RoleName": "Associate Consultant"
+        },
+        {
+          "RoleId": 6,
+          "RoleName": "Associate Delivery Resource Manager"
+        },
+        {
+          "RoleId": 7,
+          "RoleName": "Associate Digital Architect"
+        },
+        {
+          "RoleId": 8,
+          "RoleName": "Associate Enterprise Architect"
+        },
+        {
+          "RoleId": 9,
+          "RoleName": "Associate Escalation Engineer"
+        },
+        {
+          "RoleId": 10,
+          "RoleName": "Associate Partner Technical Advisor"
+        },
+        {
+          "RoleId": 11,
+          "RoleName": "Associate Partner Technical Consultant"
+        },
+        {
+          "RoleId": 12,
+          "RoleName": "Associate Premier Field Engineer"
+        },
+        {
+          "RoleId": 13,
+          "RoleName": "Associate Professional Services Engineer"
+        },
+        {
+          "RoleId": 14,
+          "RoleName": "Associate Project Manager"
+        },
+        {
+          "RoleId": 15,
+          "RoleName": "Associate Services Delivery Manager"
+        },
+        {
+          "RoleId": 16,
+          "RoleName": "Associate Support Engineer"
+        },
+        {
+          "RoleId": 17,
+          "RoleName": "Associate Support Engineering Leader"
+        },
+        {
+          "RoleId": 18,
+          "RoleName": "Associate Support Engineering Manager"
+        },
+        {
+          "RoleId": 19,
+          "RoleName": "Associate Support Escalation Engineer"
+        },
+        {
+          "RoleId": 20,
+          "RoleName": "Associate Supportability Program Manager"
+        },
+        {
+          "RoleId": 21,
+          "RoleName": "Associate Technical Account Manager"
+        },
+        {
+          "RoleId": 22,
+          "RoleName": "Associate Technical Advisor"
+        },
+        {
+          "RoleId": 23,
+          "RoleName": "Consultant"
+        },
+        {
+          "RoleId": 24,
+          "RoleName": "Consulting Practice Leader"
+        },
+        {
+          "RoleId": 25,
+          "RoleName": "Consulting Practice Manager"
+        },
+        {
+          "RoleId": 26,
+          "RoleName": "Contingent Staff"
+        },
+        {
+          "RoleId": 27,
+          "RoleName": "Delivery Pursuit Lead"
+        },
+        {
+          "RoleId": 28,
+          "RoleName": "Delivery Resource Manager"
+        },
+        {
+          "RoleId": 29,
+          "RoleName": "Digital Architect"
+        },
+        {
+          "RoleId": 30,
+          "RoleName": "DM Manager"
+        },
+        {
+          "RoleId": 31,
+          "RoleName": "Engagement Manager"
+        },
+        {
+          "RoleId": 32,
+          "RoleName": "Enterprise Architect"
+        },
+        {
+          "RoleId": 33,
+          "RoleName": "Escalation Engineer"
+        },
+        {
+          "RoleId": 35,
+          "RoleName": "Partner Technical Advisor"
+        },
+        {
+          "RoleId": 36,
+          "RoleName": "Partner Technical Consultant"
+        },
+        {
+          "RoleId": 37,
+          "RoleName": "PFE Manager"
+        },
+        {
+          "RoleId": 38,
+          "RoleName": "Premier Field Engineer"
+        },
+        {
+          "RoleId": 39,
+          "RoleName": "Principal Account Delivery Executive"
+        },
+        {
+          "RoleId": 40,
+          "RoleName": "Principal Architect"
+        },
+        {
+          "RoleId": 41,
+          "RoleName": "Principal Consultant"
+        },
+        {
+          "RoleId": 42,
+          "RoleName": "Principal Delivery Pursuit Lead"
+        },
+        {
+          "RoleId": 43,
+          "RoleName": "Principal Delivery Resource Manager"
+        },
+        {
+          "RoleId": 44,
+          "RoleName": "Principal Digital Architect"
+        },
+        {
+          "RoleId": 45,
+          "RoleName": "Principal DM Manager"
+        },
+        {
+          "RoleId": 46,
+          "RoleName": "Principal Engagement Manager"
+        },
+        {
+          "RoleId": 47,
+          "RoleName": "Principal Enterprise Architect"
+        },
+        {
+          "RoleId": 48,
+          "RoleName": "Principal Escalation Engineer"
+        },
+        {
+          "RoleId": 49,
+          "RoleName": "Principal Partner Technical Advisor"
+        },
+        {
+          "RoleId": 50,
+          "RoleName": "Principal Premier Field Engineer"
+        },
+        {
+          "RoleId": 51,
+          "RoleName": "Principal Professional Services Engineer"
+        },
+        {
+          "RoleId": 52,
+          "RoleName": "Principal Project Manager"
+        },
+        {
+          "RoleId": 53,
+          "RoleName": "Principal Services Delivery Executive"
+        },
+        {
+          "RoleId": 54,
+          "RoleName": "Principal Services Delivery Manager"
+        },
+        {
+          "RoleId": 55,
+          "RoleName": "Principal Support Engineer"
+        },
+        {
+          "RoleId": 56,
+          "RoleName": "Principal Support Engineering Leader"
+        },
+        {
+          "RoleId": 57,
+          "RoleName": "Principal Support Engineering Manager"
+        },
+        {
+          "RoleId": 58,
+          "RoleName": "Principal Support Escalation Engineer"
+        },
+        {
+          "RoleId": 59,
+          "RoleName": "Principal Supportability Program Manager"
+        },
+        {
+          "RoleId": 60,
+          "RoleName": "Principal Technical Account Manager"
+        },
+        {
+          "RoleId": 61,
+          "RoleName": "Principal Technical Advisor"
+        },
+        {
+          "RoleId": 62,
+          "RoleName": "Prof Development Manager"
+        },
+        {
+          "RoleId": 63,
+          "RoleName": "Prof Development Resource Manager"
+        },
+        {
+          "RoleId": 64,
+          "RoleName": "Professional Services Engineer"
+        },
+        {
+          "RoleId": 65,
+          "RoleName": "Project Manager"
+        },
+        {
+          "RoleId": 66,
+          "RoleName": "PTA Manager"
+        },
+        {
+          "RoleId": 67,
+          "RoleName": "PTC Manager"
+        },
+        {
+          "RoleId": 68,
+          "RoleName": "Senior Account Delivery Executive"
+        },
+        {
+          "RoleId": 69,
+          "RoleName": "Senior Architect"
+        },
+        {
+          "RoleId": 70,
+          "RoleName": "Senior Consultant"
+        },
+        {
+          "RoleId": 71,
+          "RoleName": "Senior Delivery Pursuit Lead"
+        },
+        {
+          "RoleId": 72,
+          "RoleName": "Senior Delivery Resource Manager"
+        },
+        {
+          "RoleId": 73,
+          "RoleName": "Senior Digital Architect"
+        },
+        {
+          "RoleId": 74,
+          "RoleName": "Senior Engagement Manager"
+        },
+        {
+          "RoleId": 75,
+          "RoleName": "Senior Enterprise Architect"
+        },
+        {
+          "RoleId": 76,
+          "RoleName": "Senior Escalation Engineer"
+        },
+        {
+          "RoleId": 77,
+          "RoleName": "Senior Partner Technical Advisor"
+        },
+        {
+          "RoleId": 78,
+          "RoleName": "Senior Partner Technical Consultant"
+        },
+        {
+          "RoleId": 79,
+          "RoleName": "Senior Premier Field Engineer"
+        },
+        {
+          "RoleId": 80,
+          "RoleName": "Senior Principal Account Delivery Executive"
+        },
+        {
+          "RoleId": 81,
+          "RoleName": "Senior Principal Consultant"
+        },
+        {
+          "RoleId": 82,
+          "RoleName": "Senior Principal Delivery Resource Manager"
+        },
+        {
+          "RoleId": 83,
+          "RoleName": "Senior Principal Engagement Manager"
+        },
+        {
+          "RoleId": 84,
+          "RoleName": "Senior Principal Partner Technical Consultant"
+        },
+        {
+          "RoleId": 85,
+          "RoleName": "Senior Principal Professional Services Engineer"
+        },
+        {
+          "RoleId": 86,
+          "RoleName": "Senior Principal Project Manager"
+        },
+        {
+          "RoleId": 87,
+          "RoleName": "Senior Principal Services Delivery Executive"
+        },
+        {
+          "RoleId": 88,
+          "RoleName": "Senior Principal Services Delivery Manager"
+        },
+        {
+          "RoleId": 89,
+          "RoleName": "Senior Principal Technical Account Manager"
+        },
+        {
+          "RoleId": 90,
+          "RoleName": "Senior Professional Services Engineer"
+        },
+        {
+          "RoleId": 91,
+          "RoleName": "Senior Project Manager"
+        },
+        {
+          "RoleId": 92,
+          "RoleName": "Senior Services Delivery Executive"
+        },
+        {
+          "RoleId": 93,
+          "RoleName": "Senior Services Delivery Manager"
+        },
+        {
+          "RoleId": 94,
+          "RoleName": "Senior Support Engineer"
+        },
+        {
+          "RoleId": 95,
+          "RoleName": "Senior Support Engineering Leader"
+        },
+        {
+          "RoleId": 96,
+          "RoleName": "Senior Support Engineering Manager"
+        },
+        {
+          "RoleId": 97,
+          "RoleName": "Senior Support Escalation Engineer"
+        },
+        {
+          "RoleId": 98,
+          "RoleName": "Senior Supportability Program Manager"
+        },
+        {
+          "RoleId": 99,
+          "RoleName": "Senior Technical Account Manager"
+        },
+        {
+          "RoleId": 100,
+          "RoleName": "Senior Technical Advisor"
+        },
+        {
+          "RoleId": 101,
+          "RoleName": "Services Delivery Executive"
+        },
+        {
+          "RoleId": 102,
+          "RoleName": "Services Delivery Manager"
+        },
+        {
+          "RoleId": 103,
+          "RoleName": "Services Leader"
+        },
+        {
+          "RoleId": 104,
+          "RoleName": "Services Practice Leader"
+        },
+        {
+          "RoleId": 105,
+          "RoleName": "Sr. Principal Account Delivery Executive"
+        },
+        {
+          "RoleId": 106,
+          "RoleName": "Sr. Principal Consultant"
+        },
+        {
+          "RoleId": 107,
+          "RoleName": "Sr. Principal Delivery Resource Manager"
+        },
+        {
+          "RoleId": 108,
+          "RoleName": "Sr. Principal Engagement Manager"
+        },
+        {
+          "RoleId": 109,
+          "RoleName": "Sr. Principal Premier Field Engineer"
+        },
+        {
+          "RoleId": 110,
+          "RoleName": "Sr. Principal Project Manager"
+        },
+        {
+          "RoleId": 111,
+          "RoleName": "Subcontractor"
+        },
+        {
+          "RoleId": 112,
+          "RoleName": "Support Engineer"
+        },
+        {
+          "RoleId": 113,
+          "RoleName": "Support Engineering Leader"
+        },
+        {
+          "RoleId": 114,
+          "RoleName": "Support Engineering Manager"
+        },
+        {
+          "RoleId": 115,
+          "RoleName": "Support Escalation Engineer"
+        },
+        {
+          "RoleId": 116,
+          "RoleName": "Support Planner"
+        },
+        {
+          "RoleId": 117,
+          "RoleName": "Support Practice Leader"
+        },
+        {
+          "RoleId": 118,
+          "RoleName": "Support Practice Manager"
+        },
+        {
+          "RoleId": 119,
+          "RoleName": "Supportability Manager"
+        },
+        {
+          "RoleId": 120,
+          "RoleName": "Supportability Program Manager"
+        },
+        {
+          "RoleId": 121,
+          "RoleName": "Technical Account Manager"
+        },
+        {
+          "RoleId": 122,
+          "RoleName": "Technical Advisor"
+        },
+        {
+          "RoleId": 123,
+          "RoleName": "Technical Delivery Manager"
+        }
+      ]
+    }
+  ]
+}
